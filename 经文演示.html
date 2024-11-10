@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机成语生成器</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            font-size: 2em;
+            background-color: #f0f0f0;
+        }
+        .idiom {
+            padding: 20px;
+            background-color: #ffffff;
+            border: 2px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+    <script>
+        function generateIdiom() {
+            const idioms = [
+                "有人以为我是凭着血气行事，我也以为必须用勇敢待这等人。求你们不要叫我在你们那里的时候有这样的勇敢。 (哥林多后书 10:2 和合本)",
+                "你们是看眼前的吗？倘若有人自信是属基督的，他要再想想，他如何属基督，我们也是如何属基督的。 (哥林多后书 10:7 和合本)",
+                "但夸口的，当指着主夸口。 (哥林多后书 10:17 和合本)",
+                "但愿你们宽容我这一点愚妄；其实，你们原是宽容我的。 (哥林多后书 11:1 和合本)",
+                "我说这话是羞辱自己，好像我们从前是软弱的，然而人在何事上勇敢，（我说句愚妄话），我也勇敢。 (哥林多后书 11:21 和合本)",
+                "我自夸固然无益，但我是不得已的。如今我要说到主的显现和启示。 (哥林多后书 12:1 和合本)",
+                "如今我打算第三次到你们那里去，也必不累着你们，因我所求的是你们，不是你们的财物。儿女不该为父母积财，父母该为儿女积财。 (哥林多后书 12:14 和合本)",
+                "我劝了提多到你们那里去，又差那位兄弟与他同去，提多占过你们的便宜吗？我们行事不同是一个心灵吗？不同是一个脚踪吗？ (哥林多后书 12:18 和合本)",
+                "我怕我再来的时候，见你们不合我所想望的，你们见我也不合你们所想望的。又怕有纷争、嫉妒、恼怒、结党、毁谤、谗言、狂傲、混乱的事； (哥林多后书 12:20 和合本)",
+                "我从前说过，如今不在你们那里又说，正如我第二次见你们的时候所说的一样，就是对那犯了罪的和其余的人说：我若再来，必不宽容。 (哥林多后书 13:2 和合本)"
+            ];
+            // 随机生成一个成语
+            const randomIdiom = idioms[Math.floor(Math.random() * idioms.length)];
+            document.getElementById("idiom-display").innerText = randomIdiom;
+        }
+    </script>
+</head>
+<body onload="generateIdiom()">
+    <div class="idiom" id="idiom-display">正在生成成语...</div>
+</body>
+</html>
