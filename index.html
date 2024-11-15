@@ -1,3 +1,9 @@
+
+
+共享
+
+
+您说：
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -10,34 +16,15 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: '行楷', Arial, sans-serif;
-            background-image: url('https://your-image-url.com'); /* 替换为背景图片链接 */
-            background-size: cover;
-            background-position: center;
-            margin: 0;
-            color: #333;
-        }
-        .idiom-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.8em;  /* 调小字体大小 */
-            width: 50%;  /* 适应手机屏幕的宽度 */
-            text-align: center;
-        }
-        .idiom-column {
-            display: flex;
-            flex-direction: column;
-            margin: 5px;  /* 每列之间的间距 */
+            font-family: Arial, sans-serif;
+            font-size: 2em;
+            background-color: #f0f0f0;
         }
         .idiom {
-            padding: 5px;
-            color: #333;
-            margin: 5px 0;
-            /* 删除边框和背景色，使框架透明 */
-            border: none;
-            background: none;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 2px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
     </style>
     <script>
@@ -61,32 +48,13 @@
                 "我岂没有吩咐你吗？你当刚强壮胆！不要惧怕，也不要惊惶；因为你无论往哪里去，耶和华－你的　神必与你同在。” (约书亚记 1:9 和合本)",
                 "恒常忍耐可以劝动君王；柔和的舌头能折断骨头。(箴言25:15 和合本)",
             ];
-            // 随机生成一个经文
+            // 随机生成一个成语
             const randomIdiom = idioms[Math.floor(Math.random() * idioms.length)];
-            const columnContainer = document.getElementById("idiom-columns");
-            columnContainer.innerHTML = '';  // 清空已有内容
-
-            // 按照每列 10 个字分列
-            let currentColumnText = '';
-            let columnIndex = 0;
-
-            for (let i = 0; i < randomIdiom.length; i++) {
-                currentColumnText += randomIdiom[i];
-                if ((i + 1) % 10 === 0 || i === randomIdiom.length - 1) {
-                    // 每 10 个字符或者最后一个字符添加到当前列
-                    const currentColumn = document.createElement("div");
-                    currentColumn.classList.add("idiom-column");
-                    currentColumn.innerHTML = `<div class="idiom">${currentColumnText}</div>`;
-                    columnContainer.appendChild(currentColumn);
-                    currentColumnText = ''; // 重置当前列内容
-                }
-            }
+            document.getElementById("idiom-display").innerText = randomIdiom;
         }
     </script>
 </head>
 <body onload="generateIdiom()">
-    <div class="idiom-container" id="idiom-columns">
-        <!-- 经文会在这里显示 -->
-    </div>
+    <div class="idiom" id="idiom-display">正在生成成语...</div>
 </body>
 </html>
