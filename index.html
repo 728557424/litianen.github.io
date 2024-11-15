@@ -6,19 +6,27 @@
     <title>感恩有你</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: Arial, sans-serif;
+            font-family: 'KaiTi', '楷体', sans-serif; /* 设置字体为行楷 */
             font-size: 2em;
-            background-color: #f0f0f0;
+            background: url('微信图片_20241115150428.jpg') no-repeat center center fixed; /* 设置背景图片 */
+            background-size: cover; /* 确保图片适应屏幕大小 */
+            color: white; /* 文字颜色设置为白色，保证与背景对比 */
         }
         .idiom {
+            background-color: rgba(0, 0, 0, 0.6); /* 设置半透明背景 */
             padding: 20px;
-            background-color: #ffffff;
-            border: 2px solid #ddd;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px; /* 增加圆角 */
+            white-space: pre-wrap; /* 保证换行 */
+            writing-mode: vertical-rl; /* 竖排文本，从右至左 */
+            text-align: right;
+            line-height: 1.5em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 增加阴影效果 */
         }
     </style>
     <script>
@@ -42,13 +50,17 @@
                 "我岂没有吩咐你吗？你当刚强壮胆！不要惧怕，也不要惊惶；因为你无论往哪里去，耶和华－你的　神必与你同在。” (约书亚记 1:9 和合本)",
                 "恒常忍耐可以劝动君王；柔和的舌头能折断骨头。(箴言25:15 和合本)",
             ];
-            // 随机生成一个成语
+
             const randomIdiom = idioms[Math.floor(Math.random() * idioms.length)];
-            document.getElementById("idiom-display").innerText = randomIdiom;
+            let formattedIdiom = randomIdiom.replace(/[。；]/g, '$&\n'); // 在句号和分号后添加换行
+            formattedIdiom = formattedIdiom.replace(/\(/g, '\n('); // 左括号前换行
+
+            // 使用JavaScript设置显示
+            document.getElementById("idiom-display").innerHTML = formattedIdiom;
         }
     </script>
 </head>
 <body onload="generateIdiom()">
-    <div class="idiom" id="idiom-display">正在生成成语...</div>
+    <div class="idiom" id="idiom-display">正在生成经文...</div>
 </body>
 </html>
