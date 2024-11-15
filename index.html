@@ -14,7 +14,7 @@
             height: 100vh;
             font-family: 'SimSun', '宋体', sans-serif; /* 设置字体为宋体 */
             font-size: 1.2em;
-            background: url('微信图片_20241115150428.webp') no-repeat center center fixed; /* 设置背景图片 */
+            background: no-repeat center center fixed; /* 不设置背景图，等待 JS 动态设置 */
             background-size: cover; /* 确保图片适应屏幕大小 */
             color: white; /* 文字颜色设置为白色，保证与背景对比 */
         }
@@ -32,6 +32,7 @@
         }
     </style>
     <script>
+        // 随机生成经文
         function generateIdiom() {
             const idioms = [
                 "因为，他的怒气不过是转眼之间，他的恩典乃是一生之久。一宿虽然有哭泣，早晨便必欢呼。(诗篇 30:5 )",
@@ -72,9 +73,34 @@
             // 设置显示内容
             document.getElementById("idiom-display").innerText = formattedIdiom;
         }
+
+        // 设置随机背景图
+        function setRandomBackground() {
+            const backgroundImages = [
+                '微信图片_20241115150428.webp',
+                '微信图片_20241115184543.webp',
+                '微信图片_20241115184553.webp',
+	'微信图片_20241115184558.webp',
+	'微信图片_20241115184603.webp',
+	'微信图片_20241115184607.webp',
+                // 添加更多背景图路径
+            ];
+
+            // 从数组中随机选择一张背景图片
+            const randomImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+
+            // 设置背景图
+            document.body.style.backgroundImage = `url('${randomImage}')`;
+        }
+
+        // 页面加载时执行
+        window.onload = function() {
+            setRandomBackground();
+            generateIdiom();
+        };
     </script>
 </head>
-<body onload="generateIdiom()">
+<body>
     <div class="idiom" id="idiom-display">正在生成经文...</div>
 </body>
 </html>
