@@ -23,11 +23,12 @@
             padding: 20px;
             border-radius: 10px; /* 增加圆角 */
             white-space: pre-wrap; /* 保证换行 */
-            text-align: right;
+            writing-mode: vertical-rl; /* 保持竖排文本 */
+            text-align: right; /* 竖排右对齐 */
             line-height: 1.5em;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 增加阴影效果 */
-            max-width: 90%; /* 限制容器宽度 */
-            word-wrap: break-word; /* 确保长单词能够自动换行 */
+            max-height: 90vh; /* 限制容器高度 */
+            overflow-y: auto; /* 超出高度时滚动 */
         }
     </style>
     <script>
@@ -54,17 +55,15 @@
 
             const randomIdiom = idioms[Math.floor(Math.random() * idioms.length)];
 
-            // 自动换行处理
-            const maxCharsPerLine = 20; // 每行最多字符数
-            let formattedIdiom = randomIdiom
-                .split('')
-                .reduce((acc, char, idx) => {
-                    if ((idx + 1) % maxCharsPerLine === 0) acc += '\n';
-                    return acc + char;
-                }, '');
+            // 自动换行处理：按竖排限制每列最多 20 个字符
+            const maxCharsPerColumn = 20;
+            let formattedIdiom = randomIdiom.split('').reduce((acc, char, idx) => {
+                if ((idx + 1) % maxCharsPerColumn === 0) acc += '\n';
+                return acc + char;
+            }, '');
 
             // 设置显示内容
-            document.getElementById("idiom-display").innerHTML = formattedIdiom;
+            document.getElementById("idiom-display").innerText = formattedIdiom;
         }
     </script>
 </head>
