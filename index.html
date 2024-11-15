@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>感恩有你</title>
     <style>
         body {
@@ -14,14 +14,17 @@
             height: 100vh;
             font-family: 'KaiTi', '楷体', sans-serif; /* 设置字体为行楷 */
             font-size: 2em;
-            background: url('微信图片_20241115150428.webp') no-repeat center center fixed; /* 设置背景图片 */
-            background-size: cover; /* 确保图片适应屏幕大小 */
-            color: white; /* 文字颜色设置为白色，保证与背景对比 */
+            color: white; /* 白色字体，保证与背景对比 */
+            background: #000; /* 默认背景色，防止加载图片前是空白 */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
         }
         .idiom {
-            background-color: rgba(0, 0, 0, 0.6); /* 设置半透明背景 */
+            background-color: rgba(0, 0, 0, 0.6); /* 半透明背景 */
             padding: 20px;
-            border-radius: 10px; /* 增加圆角 */
+            border-radius: 10px;
             white-space: pre-wrap; /* 保证换行 */
             writing-mode: vertical-rl; /* 竖排文本，从右至左 */
             text-align: right;
@@ -30,6 +33,21 @@
         }
     </style>
     <script>
+        function preloadImage(url, callback) {
+            const img = new Image();
+            img.src = url;
+            img.onload = callback;
+        }
+
+        function isWeChatBrowser() {
+            const ua = navigator.userAgent.toLowerCase();
+            return ua.indexOf('micromessenger') !== -1;
+        }
+
+        function setBackgroundImage(url) {
+            document.body.style.backgroundImage = `url(${url})`;
+        }
+
         function generateIdiom() {
             const idioms = [
                 "因为，他的怒气不过是转眼之间，他的恩典乃是一生之久。一宿虽然有哭泣，早晨便必欢呼。(诗篇 30:5 和合本)",
@@ -55,12 +73,18 @@
             let formattedIdiom = randomIdiom.replace(/[。；]/g, '$&\n'); // 在句号和分号后添加换行
             formattedIdiom = formattedIdiom.replace(/\(/g, '\n('); // 左括号前换行
 
-            // 使用JavaScript设置显示
+            // 显示经文
             document.getElementById("idiom-display").innerHTML = formattedIdiom;
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const imageUrl = 'https://example.com/your-image.jpg'; // 替换为你的图片地址
+            preloadImage(imageUrl, () => setBackgroundImage(imageUrl));
+            generateIdiom();
+        });
     </script>
 </head>
-<body onload="generateIdiom()">
+<body>
     <div class="idiom" id="idiom-display">正在生成经文...</div>
 </body>
 </html>
