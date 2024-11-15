@@ -15,29 +15,29 @@
             background-size: cover;
             background-position: center;
             margin: 0;
+            color: #333;
         }
         .idiom-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            align-items: flex-start;
-            font-size: 2em;
-            color: #333;
-            width: 40%;  /* 根据需要调整宽度 */
+            align-items: center;
+            font-size: 1.2em;  /* 调小字体大小 */
+            width: 90%;  /* 适应手机屏幕的宽度 */
             text-align: center;
         }
         .idiom-column {
             display: flex;
             flex-direction: column;
-            margin: 10px;
+            margin: 5px;  /* 每列之间的间距 */
         }
         .idiom {
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border: 2px solid #ddd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            font-size: 1.5em;
+            padding: 5px;
+            color: #333;
             margin: 5px 0;
+            /* 删除边框和背景色，使框架透明 */
+            border: none;
+            background: none;
         }
     </style>
     <script>
@@ -67,7 +67,6 @@
             columnContainer.innerHTML = '';  // 清空已有内容
 
             // 按照每列 10 个字分列
-            let currentColumn = '';
             let currentColumnText = '';
             let columnIndex = 0;
 
@@ -75,7 +74,7 @@
                 currentColumnText += randomIdiom[i];
                 if ((i + 1) % 10 === 0 || i === randomIdiom.length - 1) {
                     // 每 10 个字符或者最后一个字符添加到当前列
-                    currentColumn = document.createElement("div");
+                    const currentColumn = document.createElement("div");
                     currentColumn.classList.add("idiom-column");
                     currentColumn.innerHTML = `<div class="idiom">${currentColumnText}</div>`;
                     columnContainer.appendChild(currentColumn);
