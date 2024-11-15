@@ -12,7 +12,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: 'SimSun', '宋体', sans-serif; /* 设置字体为行楷 */
+            font-family: 'SimSun', '宋体', sans-serif; /* 设置字体为宋体 */
             font-size: 1.2em;
             background: url('微信图片_20241115150428.webp') no-repeat center center fixed; /* 设置背景图片 */
             background-size: cover; /* 确保图片适应屏幕大小 */
@@ -23,10 +23,11 @@
             padding: 20px;
             border-radius: 10px; /* 增加圆角 */
             white-space: pre-wrap; /* 保证换行 */
-            writing-mode: vertical-rl; /* 竖排文本，从右至左 */
             text-align: right;
             line-height: 1.5em;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 增加阴影效果 */
+            max-width: 90%; /* 限制容器宽度 */
+            word-wrap: break-word; /* 确保长单词能够自动换行 */
         }
     </style>
     <script>
@@ -52,10 +53,17 @@
             ];
 
             const randomIdiom = idioms[Math.floor(Math.random() * idioms.length)];
-            let formattedIdiom = randomIdiom.replace(/[。；]/g, '$&\n'); // 在句号和分号后添加换行
-            formattedIdiom = formattedIdiom.replace(/\(/g, '\n('); // 左括号前换行
 
-            // 使用JavaScript设置显示
+            // 自动换行处理
+            const maxCharsPerLine = 20; // 每行最多字符数
+            let formattedIdiom = randomIdiom
+                .split('')
+                .reduce((acc, char, idx) => {
+                    if ((idx + 1) % maxCharsPerLine === 0) acc += '\n';
+                    return acc + char;
+                }, '');
+
+            // 设置显示内容
             document.getElementById("idiom-display").innerHTML = formattedIdiom;
         }
     </script>
