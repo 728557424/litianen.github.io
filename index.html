@@ -3,45 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机成语生成器</title>
+    <title>感恩有你</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: Arial, sans-serif;
+            font-family: '行楷', Arial, sans-serif;
+            background-image: url('https://your-image-url.com'); /* 替换为背景图片链接 */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+        }
+        .idiom-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
             font-size: 2em;
-            background-color: #f0f0f0;
+            color: #333;
+            width: 40%;  /* 根据需要调整宽度 */
+            text-align: center;
+        }
+        .idiom-column {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
         }
         .idiom {
-            padding: 20px;
-            background-color: #ffffff;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
             border: 2px solid #ddd;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.5em;
+            margin: 5px 0;
         }
     </style>
     <script>
         function generateIdiom() {
             const idioms = [
-                "有人以为我是凭着血气行事，我也以为必须用勇敢待这等人。求你们不要叫我在你们那里的时候有这样的勇敢。 (哥林多后书 10:2 和合本)",
-                "你们是看眼前的吗？倘若有人自信是属基督的，他要再想想，他如何属基督，我们也是如何属基督的。 (哥林多后书 10:7 和合本)",
-                "但夸口的，当指着主夸口。 (哥林多后书 10:17 和合本)",
-                "但愿你们宽容我这一点愚妄；其实，你们原是宽容我的。 (哥林多后书 11:1 和合本)",
-                "我说这话是羞辱自己，好像我们从前是软弱的，然而人在何事上勇敢，（我说句愚妄话），我也勇敢。 (哥林多后书 11:21 和合本)",
-                "我自夸固然无益，但我是不得已的。如今我要说到主的显现和启示。 (哥林多后书 12:1 和合本)",
-                "如今我打算第三次到你们那里去，也必不累着你们，因我所求的是你们，不是你们的财物。儿女不该为父母积财，父母该为儿女积财。 (哥林多后书 12:14 和合本)",
-                "我劝了提多到你们那里去，又差那位兄弟与他同去，提多占过你们的便宜吗？我们行事不同是一个心灵吗？不同是一个脚踪吗？ (哥林多后书 12:18 和合本)",
-                "我怕我再来的时候，见你们不合我所想望的，你们见我也不合你们所想望的。又怕有纷争、嫉妒、恼怒、结党、毁谤、谗言、狂傲、混乱的事； (哥林多后书 12:20 和合本)",
-                "我从前说过，如今不在你们那里又说，正如我第二次见你们的时候所说的一样，就是对那犯了罪的和其余的人说：我若再来，必不宽容。 (哥林多后书 13:2 和合本)"
+                "因为，他的怒气不过是转眼之间，他的恩典乃是一生之久。一宿虽然有哭泣，早晨便必欢呼。(诗篇 30:5 和合本)",
+                "我知道怎样处卑贱，也知道怎样处丰富，或饱足、或饥饿、或有余、或缺乏，随事随在，我都得了秘诀。我靠着那加给我力量的，凡事都能作。(腓立比书 4:12-13 和合本)",
+                "既是儿女，便是后嗣，就是　神的后嗣，和基督同作后嗣。如果我们和他一同受苦，也必和他一同得荣耀。（罗马书8:17 和合本）",
+                "因为宝座中的羔羊必牧养他们，领他们到生命水的泉源；　神也必擦去他们一切的眼泪。”(启示录7:17 和合本)",
+                "【箴4:23】你要保守你心，胜过保守一切（或作“你要切切保守你心”），因为一生的果效，是由心发出。",
+                "【诗121:5-6】保护你的是耶和华，耶和华在你右边荫庇你。白日，太阳必不伤你；夜间，月亮必不害你。",
+                "有人靠车，有人靠马，但我们要提到耶和华－我们　神的名。(诗篇 20:7 和合本)",
+                "爱是恒久忍耐，又有恩慈；爱是不嫉妒；爱是不自夸，不张狂，不做害羞的事，不求自己的益处，不轻易发怒，不计算人的恶，不喜欢不义，只喜欢真理；凡事包容，凡事相信，凡事盼望，凡事忍耐。爱是永不止息。哥林多前书 13:4-8",
+                "事务多，就令人作梦；言语多，就显出愚昧。传道书5:3",
+                "恨能挑启争端；爱能遮掩一切过错。(箴言10:12 和合本）",
+                "操练身体，益处还少；惟独敬虔，凡事都有益处，因有今生和来生的应许。(提摩太前书 4:8 和合本)",
+                "不要爱世界和世界上的事。人若爱世界，爱父的心就不在他里面了。因为，凡世界上的事，就像肉体的情欲、眼目的情欲，并今生的骄傲，都不是从父来的，乃是从世界来的。(约翰一书 2:15-16 和合本)",
+                "你们得救是本乎恩，也因着信；这并不是出于自己，乃是　神所赐的；也不是出于行为，免得有人自夸。（以弗所书2：8-9）",
+                "也不要将你们的肢体献给罪作不义的器具；倒要像从死里复活的人，将自己献给 神，并将肢体作义的器具献给 神。（罗6：13）",
+                "你的话是我脚前的灯，是我路上的光。(诗篇 119:105 和合本)",
+                "我岂没有吩咐你吗？你当刚强壮胆！不要惧怕，也不要惊惶；因为你无论往哪里去，耶和华－你的　神必与你同在。” (约书亚记 1:9 和合本)",
+                "恒常忍耐可以劝动君王；柔和的舌头能折断骨头。(箴言25:15 和合本)",
             ];
-            // 随机生成一个成语
+            // 随机生成一个经文
             const randomIdiom = idioms[Math.floor(Math.random() * idioms.length)];
-            document.getElementById("idiom-display").innerText = randomIdiom;
+            const columnContainer = document.getElementById("idiom-columns");
+            columnContainer.innerHTML = '';  // 清空已有内容
+
+            // 按照每列 10 个字分列
+            let currentColumn = '';
+            let currentColumnText = '';
+            let columnIndex = 0;
+
+            for (let i = 0; i < randomIdiom.length; i++) {
+                currentColumnText += randomIdiom[i];
+                if ((i + 1) % 10 === 0 || i === randomIdiom.length - 1) {
+                    // 每 10 个字符或者最后一个字符添加到当前列
+                    currentColumn = document.createElement("div");
+                    currentColumn.classList.add("idiom-column");
+                    currentColumn.innerHTML = `<div class="idiom">${currentColumnText}</div>`;
+                    columnContainer.appendChild(currentColumn);
+                    currentColumnText = ''; // 重置当前列内容
+                }
+            }
         }
     </script>
 </head>
 <body onload="generateIdiom()">
-    <div class="idiom" id="idiom-display">正在生成成语...</div>
+    <div class="idiom-container" id="idiom-columns">
+        <!-- 经文会在这里显示 -->
+    </div>
 </body>
 </html>
