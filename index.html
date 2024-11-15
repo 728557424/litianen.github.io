@@ -55,12 +55,19 @@
 
             const randomIdiom = idioms[Math.floor(Math.random() * idioms.length)];
 
-            // 自动换行处理：按竖排限制每列最多 20 个字符
+            // 自动换行处理：按列换行和左括号换行
             const maxCharsPerColumn = 20;
-            let formattedIdiom = randomIdiom.split('').reduce((acc, char, idx) => {
-                if ((idx + 1) % maxCharsPerColumn === 0) acc += '\n';
-                return acc + char;
-            }, '');
+            let formattedIdiom = '';
+            let currentLineLength = 0;
+
+            for (const char of randomIdiom) {
+                if (char === '(' || currentLineLength >= maxCharsPerColumn) {
+                    formattedIdiom += '\n'; // 换行
+                    currentLineLength = 0; // 重置计数
+                }
+                formattedIdiom += char;
+                currentLineLength++;
+            }
 
             // 设置显示内容
             document.getElementById("idiom-display").innerText = formattedIdiom;
